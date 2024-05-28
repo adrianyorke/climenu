@@ -1,8 +1,10 @@
 import os
 import sys
+from pathlib import Path
 
 import toml
 
+script_path = Path(__file__).resolve().parent
 
 class Menu:
     """Easily customised menu app written in Python to optimise execution of commonly used CLI commands."""
@@ -16,7 +18,7 @@ class Menu:
         os.system("cls")
 
     def display_menu(self) -> None:
-        with open("src/menu.toml", "r") as f:
+        with open(f"{script_path}/menu.toml", "r") as f:
             toml_data = toml.load(f)
         pass
         self.menu_options = toml_data["options"]
