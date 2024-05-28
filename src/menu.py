@@ -4,7 +4,7 @@ from pathlib import Path
 
 import toml
 
-script_path = Path(__file__).resolve().parent
+script_path = str(Path(__file__).resolve().parent)
 
 class Menu:
     """Easily customised menu app written in Python to optimise execution of commonly used CLI commands."""
@@ -30,6 +30,7 @@ class Menu:
 
     def handle_option(self, option: int) -> None:
         cmd = self.menu_options[option]["command"]
+        cmd = cmd.replace("{{script_path}}",script_path)
         print(f"{cmd=}")
         os.system(cmd)
 
