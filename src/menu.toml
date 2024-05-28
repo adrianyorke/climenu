@@ -1,0 +1,19 @@
+[[options]]
+option = "1"
+description = "list contents of current directory (DIR)"
+command = "dir"
+
+[[options]]
+option = "2"
+description = "edit ssh config (~/.ssh/config)"
+command = "notepad %USERPROFILE%/.ssh/config"
+
+[[options]]
+option = "3"
+description = "edit menu toml (src/menu.toml)"
+command = "notepad src/menu.toml"
+
+[[options]]
+option = "4"
+description = "Quit"
+command = "Quit"
