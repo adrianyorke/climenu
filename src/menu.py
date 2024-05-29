@@ -28,6 +28,10 @@ class Menu:
             print(f"{x['option']}: {x['description']}")
         print("*" * (100))
 
+    def input_option(self) -> int:
+        option = input(f"Please select a menu item: ")
+        return option
+
     def handle_option(self, option: int) -> None:
         cmd = self.menu_options[option]["command"]
         cmd = cmd.replace("{{script_path}}",script_path)
@@ -45,16 +49,21 @@ def main(args):
         print(f"{args=}")
         option = args[1]
     else:
-        while True:
-            option = input(f"Please select a menu item: ")
-            if option.isdigit() and 0 < int(option) < menu.number_of_items + 1:
-                break
-            else:
-                print(f"Option must be in range: 1-{menu.number_of_items}")
-                continue
+        option = menu.input_option()
+    while True:
+        if option.upper() == "Q":
+            option = menu.number_of_items
+            break
+        elif option.isdigit() and 0 < int(option) < menu.number_of_items + 1:
+            break
+        else:
+            print(f"Option must be in range 1-{menu.number_of_items} or 'Q' to Quit")
+            # input option again
+            option = menu.input_option()
+            continue
 
     option = int(option) - 1
-    if menu.menu_options[option]["description"] != "Quit":
+    if menu.menu_options[option]["command"] != "Quit":
         menu.handle_option(option=option)
 
 
