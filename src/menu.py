@@ -15,7 +15,12 @@ class Menu:
 
     @staticmethod
     def clear_screen() -> None:
-        os.system("cls")
+        if sys.platform in ["darwin", "linux"]:
+            # Mac or Linux
+            os.system("clear")
+        else:
+            # Windows
+            os.system("cls")
 
     def display_menu(self) -> None:
         with open(f"{script_path}/menu.toml", "r") as f:
